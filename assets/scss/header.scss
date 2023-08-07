@@ -1,0 +1,18 @@
+header{
+    background-color: darkblue;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem;
+    ul{
+        display: flex;
+        li{
+            padding-right: 0.8rem;
+            a{
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: white;
+            }
+        }
+    }
+}
