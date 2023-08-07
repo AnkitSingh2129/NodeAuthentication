@@ -1,3 +1,8 @@
 .heading h1 {
   margin: 2rem;
   font-size: 2.5rem; }
+
+#feed-posts {
+  margin: 2rem; }
+  #feed-posts #posts-list-container ul li {
+    list-style-type: square; }

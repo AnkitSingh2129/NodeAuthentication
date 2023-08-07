@@ -2,3 +2,15 @@
     margin: 2rem;
     font-size: 2.5rem;
 }
+
+#feed-posts{
+    margin: 2rem;
+
+    #posts-list-container{
+        ul{
+            li{
+                list-style-type: square;
+            }
+        }
+    }
+}
