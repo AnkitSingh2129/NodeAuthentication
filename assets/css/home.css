@@ -6,3 +6,5 @@
   margin: 2rem; }
   #feed-posts #posts-list-container ul li {
     list-style-type: square; }
+    #feed-posts #posts-list-container ul li .post-comments {
+      margin-left: 2rem; }
