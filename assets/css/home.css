@@ -1,10 +1,10 @@
-.heading h1 {
-  margin: 2rem;
-  font-size: 2.5rem; }
-
-#feed-posts {
-  margin: 2rem; }
-  #feed-posts #posts-list-container ul li {
-    list-style-type: square; }
-    #feed-posts #posts-list-container ul li .post-comments {
-      margin-left: 2rem; }
+#home-container {
+  display: flex; }
+  #home-container #feed-posts {
+    width: 70%;
+    padding: 10px; }
+  #home-container #user-friends {
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid grey;
+    height: 100vh; }

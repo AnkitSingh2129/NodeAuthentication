@@ -1,14 +1,22 @@
-header {
-  background-color: darkblue;
-  color: white;
+#layout-header nav {
   display: flex;
   justify-content: space-between;
-  padding: 0.6rem; }
-  header ul {
-    display: flex; }
-    header ul li {
-      padding-right: 0.8rem; }
-      header ul li a {
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: white; }
+  padding: 0.6rem;
+  background: #2196f3;
+  color: white;
+  box-shadow: 1px 1px 1px 1px lightgrey; }
+  #layout-header nav .mini-logo p {
+    margin: 5px;
+    font-size: 1.9rem;
+    font-weight: bold; }
+  #layout-header nav .auth-links ul {
+    margin: 5% 5px;
+    display: flex;
+    list-style: none; }
+    #layout-header nav .auth-links ul li {
+      margin-right: 10px; }
+      #layout-header nav .auth-links ul li a {
+        font-size: 1.4rem; }
+  #layout-header nav a {
+    color: white;
+    text-decoration: none; }
