@@ -15,16 +15,15 @@ module.exports.profile = function (req, res) {
 };
 
 // Update the user profile
-module.exports.update = function(req,res){
-  if(req.user.id == req.params.id){
-    User.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      return res.redirect('back');
-    })
-  }else{
-    return res.status(401).send('Unauthorized');
+module.exports.update = function (req, res) {
+  if (req.user.id == req.params.id) {
+    User.findByIdAndUpdate(req.params.id, req.body).then(() => {
+      return res.redirect("back");
+    });
+  } else {
+    return res.status(401).send("Unauthorized");
   }
-}
+};
 
 // render the signUp page
 module.exports.signUp = function (req, res) {
@@ -74,6 +73,7 @@ module.exports.create = function (req, res) {
 
 // SignIn and create a session ffor the user
 module.exports.createSession = function (req, res) {
+  req.flash("success", "Logged In Successfully");
   return res.redirect("/");
 };
 
@@ -82,6 +82,7 @@ module.exports.destroySession = function (req, res) {
     if (err) {
       return next(err);
     }
+    req.flash("success", "Logged Out Successfully");
     res.redirect("/");
   });
 };
