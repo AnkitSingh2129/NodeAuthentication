@@ -12,19 +12,6 @@ passport.use(
       passReqToCallback: true
     },
     function (req, email, password, done) {
-      //find the user and establish the identity
-      // User.findOne({ email: email }, function (err, user) {
-      //   if (err) {
-      //     console.log("Error in finding user --> passport");
-      //     return done(err);
-      //   }
-      //   if (!user || user.password != password) {
-      //     console.log("Invalid username or password!");
-      //     return done(null, false);
-      //   }
-
-      //   return done(null, user);
-      // });
       User.findOne({ email: email })
         .then((user) => {
           if (!user || user.password != password) {
@@ -49,14 +36,6 @@ passport.serializeUser(function (user, done) {
 
 // deserializing the user from the key in the cookies
 passport.deserializeUser(function (id, done) {
-  // User.findById(id, function (err, user) {
-  //   if (err) {
-  //     console.log("Error in finding user");
-  //     return done(err);
-  //   }
-
-  //   return done(null, user);
-  // });
   User.findById(id)
     .then((user) => {
       return done(null, user);
