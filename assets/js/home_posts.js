@@ -13,7 +13,7 @@
                 success: function(data){
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
-                    deletePost($('.delete-post-button', newPost));
+                    deletePost($(' .delete-post-button', newPost));
                 }, error: function(error){
                     console.log(error.responseText);
                 }
