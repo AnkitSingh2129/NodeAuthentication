@@ -2,8 +2,7 @@
     nav{
         display: flex;
         justify-content: space-between;
-        // padding: 0 20px; 
-        padding: 0.6rem;
+        padding: 0 10px;
         background: #2196f3;
         color: white;
         box-shadow: 1px 1px 1px 1px lightgrey;
@@ -11,7 +10,7 @@
         .mini-logo{
             p{
                 margin: 5px;
-                font-size: 1.9rem;
+                font-size: 1.4rem;
                 font-weight: bold;
             }
         }
@@ -23,9 +22,6 @@
                 list-style: none;
                 li{
                     margin-right: 10px;
-                    a{
-                        font-size: 1.4rem;
-                    }
                 }
             }
         }
