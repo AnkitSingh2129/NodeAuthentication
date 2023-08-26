@@ -1,33 +1,37 @@
+ ```
+# Node.js Authentication Boilerplate
 
-## Node.js Authentication App
+This is a boilerplate for a Node.js authentication system. It includes support for local authentication, Google OAuth2, and Facebook OAuth2.
 
-This is a Node.js authentication system. It includes support for local authentication, Google OAuth2, and Facebook OAuth2.
-
-### Installation
+## Installation
 
 1. Clone the repository.
 2. Install the dependencies.
 
 ```
 npm install
-
-```
-DATABASE_URL=mongodb+srv://ankitsingh928469:a110yyXNsoV1md5M@cluster0.ylusrul.mongodb.net/?retryWrites=true&w=majority
 ```
 
-3. Start the server.
+3. Create a `.env` file and add your database connection string and secret key.
+
+```
+DATABASE_URL=mongodb://localhost:27017/node-auth
+SESSION_SECRET_KEY=secret-key
+```
+
+4. Start the server.
 
 ```
 npm start
 ```
 
-### Usage
+## Usage
 
-To use the boilerplate, you will need to create a user account. You can do this by visiting the `/signup` page. Once you have created an account, you can log in by visiting the `/login` page.
+To use the Authentication web app, you will need to create a user account. You can do this by visiting the `/signup` page. Once you have created an account, you can log in by visiting the `/login` page.
 
-After you have logged in, you will be able to access the protected routes. These routes are located at `/profile` and `/logout`.
+After you have logged in, you will be able to access the protected pages of the application. These pages include the `/profile` page and the `/dashboard` page.
 
-### Features
+## Features
 
 The boilerplate includes the following features:
 
@@ -38,9 +42,10 @@ The boilerplate includes the following features:
 * Passport.js
 * Mongoose
 * EJS
-* Connect-flash
+* Bootstrap
 
-### Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to fork the repository and submit a pull request.
+
 
