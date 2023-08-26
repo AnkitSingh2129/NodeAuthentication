@@ -1,6 +1,6 @@
+require('dotenv').config();
 // Express
 const express = require("express");
-
 const cookieParser = require("cookie-parser");
 const app = express();
 const port = process.env.PORT || 8000;
@@ -48,7 +48,7 @@ app.use(
   session({
     name: "Authentication",
     //Todo change the secret before deployment in production mode
-    secret:  'YW7UQa1jmUvtBVUY3qy7nKUnI189647b',
+    secret:  process.env.SESSION_SECRET_KEY,
     saveUninitialized: false,
     resave: false,
     cookie: {

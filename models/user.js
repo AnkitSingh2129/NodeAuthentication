@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcrypt");
 const multer = require("multer");
 const path = require("path");
 const AVATAR_PATH = path.join("/uploads/users");
@@ -27,6 +27,29 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+// Hash the password before saving it to the database
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+
+  const saltRounds = 10; // Adjust this value according to your needs
+  try {
+    const hash = await bcrypt.hash(this.password, saltRounds);
+    this.password = hash;
+    next();
+  } catch (err) {
+    return next(err);
+  }
+});
+
+// Method to compare provided password with the stored hashed password
+userSchema.methods.comparePassword = async function (password) {
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (err) {
+    throw err;
+  }
+};
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

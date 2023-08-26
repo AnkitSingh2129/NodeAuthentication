@@ -10,15 +10,12 @@ This is a Node.js authentication system. It includes support for local authentic
 
 ```
 npm install
-```
-
-3. Create a `.env` file and add your database connection string.
 
 ```
-DATABASE_URL=mongodb://localhost:27017/node-auth
+DATABASE_URL=mongodb+srv://ankitsingh928469:a110yyXNsoV1md5M@cluster0.ylusrul.mongodb.net/?retryWrites=true&w=majority
 ```
 
-4. Start the server.
+3. Start the server.
 
 ```
 npm start

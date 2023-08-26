@@ -1,25 +1,36 @@
 const passport = require("passport");
-
 const LocalStrategy = require("passport-local").Strategy;
-
 const User = require("../models/user");
+const bcrypt = require('bcrypt');
 
 // authentication using passport
 passport.use(
   new LocalStrategy(
     {
       usernameField: "email",
-      passReqToCallback: true
+      passReqToCallback: true,
     },
     function (req, email, password, done) {
       User.findOne({ email: email })
         .then((user) => {
-          if (!user || user.password != password) {
+          if (!user) {
             req.flash('error', 'Invalid username or password!');
             return done(null, false);
           }
 
-          return done(null, user);
+          // Compare the entered password with the hashed password using bcrypt.compare
+          bcrypt.compare(password, user.password, function (err, isMatch) {
+            if (err) {
+              req.flash('error', err);
+              return done(err);
+            }
+            if (!isMatch) {
+              req.flash('error', 'Invalid username or password!');
+              return done(null, false);
+            }
+
+            return done(null, user);
+          });
         })
         .catch((err) => {
           req.flash('error', err);
