@@ -57,7 +57,7 @@ app.use(
     },
     store: MongoStore.create(
       {
-        mongoUrl: 'mongodb+srv://monusingh928469:2Gfp8ory6X6uik0R@cluster0.j7aypsx.mongodb.net/?retryWrites=true&w=majority',
+        mongoUrl: 'mongodb://monusingh928469:mWiV22lTJCs2HXFD@ac-xu9jsst-shard-00-00.j7aypsx.mongodb.net:27017,ac-xu9jsst-shard-00-01.j7aypsx.mongodb.net:27017,ac-xu9jsst-shard-00-02.j7aypsx.mongodb.net:27017/?ssl=true&replicaSet=atlas-x3v0e5-shard-0&authSource=admin&retryWrites=true&w=majority',
         autoRemove: "disabled",
       },
       function (err) {
