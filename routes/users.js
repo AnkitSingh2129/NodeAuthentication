@@ -5,7 +5,7 @@ const passport = require('passport');
 
 const usersConrtoller = require('../controllers/users_controller');
 
-router.get('/profile/:id', passport.checkAuthentication ,usersConrtoller.profile);
+// router.get('/profile/:id', passport.checkAuthentication ,usersConrtoller.profile);
 router.post('/update/:id', passport.checkAuthentication ,usersConrtoller.update);
 
 router.get('/sign-up', usersConrtoller.signUp);
@@ -23,5 +23,9 @@ router.get('/sign-out', usersConrtoller.destroySession);
 
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/users/sign-in'}), usersConrtoller.createSession);
+
+
+router.get('/login/facebook', passport.authenticate('facebook', {scope: ['email']}));
+router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/users/sign-in'}), usersConrtoller.createSession);
 
 module.exports = router;

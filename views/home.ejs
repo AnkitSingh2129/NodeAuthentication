@@ -1,50 +1,68 @@
-<link rel="stylesheet" href="/css/home.css">
-<link rel="stylesheet" href="/css/chat_box.css">
+<section class="home">
+    <header>
+        <h2 class="logo">logo</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="/users/sign-out">Sign-Out</a>
+            <button class="btnUpdate-popup">Profile</button>
+        </nav>
+    </header>
 
-<div id="home-container">
-    <section id="feed-posts">
-            <h4>Posts</h4>
-            <% if(locals.user){ %>
-            <form action="/posts/create" id="new-post-form" method="POST">
-                <textarea name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
-                <input type="submit" value="Post">
-            </form>
-            <% } %>
-        
-            <div id="posts-list-container">
-                <ul>
-                    <% for(post of posts){ %>
-                        
-                    <%- include('_post') -%>
-                        
-                    <%} %>
-                </ul>
+    <div class="wrapper">
+        <span class="icon-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+        <div class="wrapper-box login">
+            <h2>Profile Details</h2>
+            <div class="profile-data">
+                <div class="user-img">
+                    <img src="<%= user.avatar %>" alt="<%= user.name %>">
+                </div>
+                <div class="user-name">
+                    <p><span><i class="fa fa-user" aria-hidden="true"></i></span><%= user.name %></p>
+                </div>
+                <div class="user-email">
+                    <p><span><i class="fa fa-envelope" aria-hidden="true"></i></span><%= user.email %></p>
+                </div>
+
+                <div class="profile-update">
+                    <p> Want to Change your details?
+                        <a href="#" class="register-link">Update</a>
+                    </p>
+                </div>
             </div>
-        </section>
-        
-        
-        <section id="user-friends">
-            <h4>Friends</h4>
-            <% for(u of all_users){%>
-                <p>
-                    <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
-                </p>
-            <% } %>
-        </section>
-        <%- include('_chat_box') -%>
-</div>
+        </div>
 
-<!-- importing this script for creating the comments -->
-<script src="/js/home_post_comments.js" ></script>
-<script src="/js/home_posts.js"></script>
+        <div class="wrapper-box register">
+            <h2>Update</h2>
+            <form action="/users/update/<%= user.id %>" enctype="multipart/form-data" method="post">
+                <div class="input-box">
+                    <span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" name="name">
+                    <label for="">Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <input type="email" name="email" id="" >
+                    <label for="">Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input type="password" name="password" id="" >
+                    <label for="">Password</label>
+                </div>
+                <div class="file-box">
+                    <input type="file" name="avatar" id="">
+                </div>
+                <button type="submit" class="btn">Update</button>
+                <div class="profile-update">
+                    <p> See Your Profile
+                        <a href="#" class="login-link">Profile Details</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
-<script src="js/toggle_likes.js"></script>
-<script>
-    $('.toggle-like-button').each(function(){
-        let self = this;
-        let toggleLike = new ToggleLike(self);
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
-<script src="/js/chat_engine.js"></script>
+<script src="/js/home.js"></script>

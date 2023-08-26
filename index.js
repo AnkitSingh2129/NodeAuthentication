@@ -1,48 +1,33 @@
+// Express
 const express = require("express");
-const env = require('./config/environment');
+
 const cookieParser = require("cookie-parser");
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
 
 //used for session cookies
 const session = require("express-session");
+
+// Passport strategies
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
-const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
+const passportFacebook = require('./config/passport-facebook-strategy');
 
 const MongoStore = require("connect-mongo");
 
-const sassMiddleware = require("node-sass-middleware");
-
+// Setting up the flash messages
 const flash = require("connect-flash");
 const customMware = require("./config/middleware");
 
-// setup the chat server to be used with socket.io
-const chatServer = require('http').Server(app);
-const chatSocket = require('./config/chat_socket').chatSockets(chatServer);
-// we have to specify a different port for the chat server because it will not run on the same port on the server run
-chatServer.listen(5000);
-console.log('Chat server is listening on port 5000')
-
-const path = require("path");
-
-app.use(
-  sassMiddleware({
-    src: path.join(__dirname, env.asset_path, 'scss'),
-    dest: path.join(__dirname, env.asset_path, 'css'),
-    debug: true,
-    outputStyle: "extended",
-    prefix: "/css",
-  })
-);
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: false}));
 
 app.use(cookieParser());
 
-app.use(express.static(env.asset_path));
+// Statics files
+app.use(express.static('./assets'));
 
 // make the uploads path available to the browser
 app.use("/uploads", express.static(__dirname + "/uploads"));
@@ -61,9 +46,9 @@ app.set("views", "./views");
 // mongo store is used to store the sesion cookie in the database
 app.use(
   session({
-    name: "codial",
+    name: "Authentication",
     //Todo change the secret before deployment in production mode
-    secret: env.session_cookie_key,
+    secret:  'YW7UQa1jmUvtBVUY3qy7nKUnI189647b',
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -71,7 +56,7 @@ app.use(
     },
     store: MongoStore.create(
       {
-        mongoUrl: "mongodb://127.0.0.1:27017/test",
+        mongoUrl: "mongodb://127.0.0.1:27017/node-auth",
         autoRemove: "disabled",
       },
       function (err) {
@@ -81,6 +66,7 @@ app.use(
   })
 );
 
+// passport 
 app.use(passport.initialize());
 app.use(passport.session());
 

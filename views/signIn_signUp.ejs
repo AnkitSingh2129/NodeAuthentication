@@ -1,0 +1,94 @@
+<section class="container forms">
+    <div class="form login">
+        <div class="form-content">
+            <header>Login</header>
+            <form action="/users/create-session" method="post">
+                <div class="field input-field">
+                    <input type="email" name="email" placeholder="Email" class="input">
+                </div>
+
+                <div class="field input-field">
+                    <input type="password" name="password" placeholder="Password" class="password">
+                    <i class="fa-solid fa-lock lock-icon"></i>
+                </div>
+
+                <div class="field button-field">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+
+            <div class="form-link">
+                <span>Don't have an account? <a href="#" class="link signup-link">Signup</a></span>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="media-options">
+            <a href="/users/login/facebook" class="field facebook">
+                <i class="fa-brands fa-facebook-f facebook-icon"></i>
+                <span>Login with Facebook</span>
+            </a>
+        </div>
+
+        <div class="media-options">
+            <a href="/users/auth/google" class="field google">
+                <i class="fa-brands fa-google google-icon" ></i>
+                <span>Login with Google</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Signup Form -->
+
+    <div class="form signup">
+        <div class="form-content">
+            <header>Signup</header>
+            <form action="/users/create" method="post">
+                <div class="field input-field">
+                    <input type="text" name="name" placeholder="Name" class="input">
+                </div>
+                <div class="field input-field">
+                    <input type="email" name="email" placeholder="Email" class="input">
+                </div>
+
+                <div class="field input-field">
+                    <input type="password" name="password" placeholder="Create password" class="password">
+                </div>
+
+                <div class="field input-field">
+                    <input type="password" name="confirm_password" name="password" placeholder="Password" class="password">
+                    <i class="fa-solid fa-lock lock-icon"></i>
+                </div>
+
+                <div class="field button-field">
+                    <button type="submit">Signup</button>
+                </div>
+            </form>
+
+            <div class="form-link">
+                <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="media-options">
+            <a href="/users/login/facebook" class="field facebook">
+                <i class="fa-brands fa-facebook-f facebook-icon"></i>
+                <span>Login with Facebook</span>
+            </a>
+        </div>
+
+        <div class="media-options">
+            <a href="/users/auth/google" class="field google">
+                <i class="fa-brands fa-google google-icon" ></i>
+                <span>Login with Google</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<script src="/js/signIn_signUp.js"></script>

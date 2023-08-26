@@ -2,20 +2,6 @@ const User = require("../models/user");
 const fs = require("fs");
 const path = require("path");
 
-module.exports.profile = function (req, res) {
-  User.findById(req.params.id)
-    .then((user) => {
-      return res.render("user_profile", {
-        title: "User Profile",
-        profile_user: user,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      return;
-    });
-};
-
 // Update the user profile
 module.exports.update = async function (req, res) {
   if (req.user.id == req.params.id) {
@@ -26,8 +12,20 @@ module.exports.update = async function (req, res) {
           console.log("*****Multer Error: ", err);
         }
 
-        user.name = req.body.name;
-        user.email = req.body.email;
+        // Update name if provided, otherwise keep it the same
+        if (req.body.name) {
+          user.name = req.body.name;
+        }
+
+        // Update email if provided, otherwise keep it the same
+        if (req.body.email) {
+          user.email = req.body.email;
+        }
+
+        if (req.body.password) {
+          user.password = req.body.password;
+
+        }
 
         if (req.file) {
           if (user.avatar) {
@@ -53,20 +51,20 @@ module.exports.update = async function (req, res) {
 // render the signUp page
 module.exports.signUp = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect("/users/profile");
+    return res.redirect("/users/sign-in");
   }
-  return res.render("user_sign_up", {
-    title: "User SignUp",
+  return res.render("signIn_signUp", {
+    title: "SignIn || SignUp",
   });
 };
 
 //render the signIn page
 module.exports.signIn = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect("/users/profile");
+    return res.redirect("/");
   }
-  return res.render("user_sign_in", {
-    title: "User SignIn",
+  return res.render("signIn_signUp", {
+    title: "SignIn || SignUp",
   });
 };
 
@@ -103,11 +101,7 @@ module.exports.createSession = function (req, res) {
 };
 
 module.exports.destroySession = function (req, res) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    req.flash("success", "Logged Out Successfully");
-    res.redirect("/");
-  });
+  req.logout(() => { });
+  req.flash("success", "Logged out Successfully");
+  return res.redirect('/users/sign-in')
 };
