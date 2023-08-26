@@ -57,11 +57,11 @@ app.use(
     },
     store: MongoStore.create(
       {
-        mongoUrl: process.env.MONGO_URL,
+        mongoUrl: 'mongodb+srv://monusingh928469:2Gfp8ory6X6uik0R@cluster0.j7aypsx.mongodb.net/?retryWrites=true&w=majority',
         autoRemove: "disabled",
       },
       function (err) {
-        // console.log(err || "connect-mongodb setup ok");
+         console.log(err || "connect-mongodb setup ok");
       }
     ),
   })
